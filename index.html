@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coach Valorant - Zoro Edition</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- 🎥 VIDEO ZORO EN FOND -->
+  <video autoplay muted loop id="bgVideo" playsinline>
+    <source src="https://motionbgs.com/media/3337/black-and-white-zoro.960x540.mp4" type="video/mp4">
+  </video>
+  <div class="overlay"></div>
+
+  <!-- ÉCRAN DE CONNEXION -->
+  <div class="login-container" id="loginScreen">
+    <h1>🎮 Coach Valorant</h1>
+    <p>Se connecter en tant que :</p>
+    <button onclick="loginAs('coach')">👨‍🏫 Coach</button>
+    <button onclick="loginAs('joueur')">🎯 Joueur</button>
+
+    <form id="coachForm" onsubmit="validateCoach(event)" style="display:none;">
+      <input type="text" id="coachUser" placeholder="Identifiant coach" required />
+      <input type="password" id="coachPass" placeholder="Mot de passe" required />
+      <button type="submit">Se connecter</button>
+    </form>
+  </div>
+
+  <!-- APPLICATION PRINCIPALE -->
+  <div class="app" id="appScreen" style="display:none;">
+    <aside class="sidebar">
+      <h2 id="sidebarRole">Role</h2>
+      <ul>
+        <li onclick="showSection('dashboard')" class="active">🏠 Dashboard</li>
+        <li onclick="showSection('matches')">📅 Matchs</li>
+      </ul>
+    </aside>
+
+    <main class="main">
+      <section id="dashboardSection">
+        <h2>Bienvenue dans le dashboard</h2>
+        <p id="welcomeMessage"></p>
+      </section>
+
+      <section id="matchesSection" style="display:none;">
+        <div id="coachTools" style="display:none;">
+          <h3>Créer un match</h3>
+          <form id="matchForm">
+            <input type="datetime-local" id="matchDate" required />
+            <input type="text" id="matchLocation" placeholder="Map / Lieu" required />
+            <button type="submit" class="glow">Créer</button>
+          </form>
+        </div>
+
+        <h3>Matchs existants</h3>
+        <div id="matchList"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
